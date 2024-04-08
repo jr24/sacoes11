@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRegistrationRequest extends FormRequest
 {
@@ -19,17 +20,18 @@ class UserRegistrationRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules($id = null): array
     {
         return [
-            'name' => 'required|string|alpha|max:30',
-            'lastname' => 'required|string|alpha|max:30',
+            'name' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
+            'lastname' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:30',
             'address' => 'required|string|max:100',
             'phone' => 'numeric|digits:7',
             'cellPhone' => 'required|numeric|digits:8',
-            'role' => 'required|string|unique:users|max:30',
-            'email' => 'required|email|unique:users|max:50',
-            'password' => 'required|string|min:8'
+            'active' => 'required|boolean',
+            'email' => 'required|email|max:50|unique:users,email,' . $id,
+            'password' => 'required|string|min:8',
+            'role' => 'required|string|in:admin,recepcionista,sastre,cliente'
         ];
     }
 }
