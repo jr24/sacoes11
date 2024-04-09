@@ -27,6 +27,10 @@ class AuthController extends Controller
             $permissions = $user->getPermissionsViaRoles()->pluck('name');
             $token = $user->createToken('API TOKEN')->plainTextToken;
             return response()->json([
+                'user' => [
+                    'name' => $user->name,
+                    'lastname' => $user->lastname
+                ],
                 'status' => true,
                 'roles' => $roles,
                 'permissions' => $permissions,

@@ -19,8 +19,12 @@ class UserController extends Controller
         }elseif(auth()->user()->hasRole('admin')){
             $users = User::all();
         }
-        
-        return response()->json($users, 200);
+        foreach ($users as $user){
+            $user->role = $user->getRoleNames();
+        }
+        return response()->json([
+            'users' => $users,
+        ], 200);
     }
 
     /**
@@ -41,7 +45,6 @@ class UserController extends Controller
             $token = $user->createToken('API TOKEN')->plainTextToken;
             return response()->json([
                 'status' => true,
-                'user' => $user,
                 'token' => $token,
                 'message' => 'User created successfully'
             ], 200);
@@ -60,7 +63,11 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         if(auth()->user()->hasRole('admin')){
-            return response()->json($user);
+            $role = $user->getRoleNames();
+            return response()->json([
+                'user' => $user,
+                'role' => $role
+            ], 200);
         }elseif(auth()->user()->hasRole('recepcionista')){
             if($user->hasRole('cliente')){
                 return response()->json($user);
