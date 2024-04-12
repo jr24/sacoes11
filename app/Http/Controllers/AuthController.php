@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     public function login(LoginRequest $request){
         try{
-            $validateUser = $request->validated();
+            $request->validated();
 
             if(!Auth::attempt($request->only(['email', 'password']))){
                 return response()->json([
@@ -22,11 +22,20 @@ class AuthController extends Controller
                 ], 401);
             }
 
+            if(Auth::user()->active == false){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'User not active',
+                ], 401);
+            }
+
             $user = User::where('email', $request->email)->first();
             $roles = $user->getRoleNames();
             $permissions = $user->getPermissionsViaRoles()->pluck('name');
             $token = $user->createToken('API TOKEN')->plainTextToken;
             return response()->json([
+                'accept' => 'application/json',
+                'content-type' => 'application/json',
                 'user' => [
                     'name' => $user->name,
                     'lastname' => $user->lastname
@@ -40,6 +49,8 @@ class AuthController extends Controller
         }
         catch(\Throwable $th){
             return response()->json([
+                'accept' => 'application/json',
+                'content-type' => 'application/json',
                 'status' => false,
                 'message' => $th->getMessage()
             ], 500);

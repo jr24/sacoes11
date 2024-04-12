@@ -24,5 +24,10 @@ class UserSedder extends Seeder
             'email' => 'ppp44@gmail.com',
             'password' => Hash::make('123456789'),
         ])->assignRole('admin');
+
+        $admins = User::factory()->count(1)->admin()->create();
+        $recepcionistas = User::factory()->count(2)->recepcionista()->create();
+        $sastres = User::factory()->count(3)->sastre()->create();
+        $clientes = User::factory()->count(5)->cliente()->create();
     }
 }

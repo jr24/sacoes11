@@ -99,8 +99,33 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function enable(string $id){
+        if(auth()->user()->hasRole('admin')){
+            $user = User::findOrFail($id);
+            $user->active = true;
+            return response()->json([
+                'status' => 'true',
+                'massage' => 'User enable'
+            ], 200);
+        }
+        return response()->json([
+            'status' => 'false',
+            'message' => 'Error enable user'
+        ],500);
+    }
+
+    public function disable(string $id){
+        if(auth()->user()->hasRole('admin')){
+            $user = User::findOrFail($id);
+            $user->active = false;
+            return response()->json([
+                'status' => 'true',
+                'massage' => 'User disable'
+            ], 200);
+        }
+        return response()->json([
+            'status' => 'false',
+            'message' => 'Error disable user'
+        ],500);
     }
 }
