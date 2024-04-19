@@ -20,8 +20,14 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $order = Order::create($data);
+        $order = Order::create($request->all());
+        foreach($request->details as $detail){
+            $order->details()->create($detail);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Order created successfully',
+        ]);
     }
 
     /**

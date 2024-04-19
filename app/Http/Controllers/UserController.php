@@ -21,7 +21,7 @@ class UserController extends Controller
             $users = User::all();
         }
         foreach ($users as $user){
-            $user->role = $user->getRoleNames();
+            $user->role = $user->getRoleNames()->first();
             $user->makeHidden(['roles', 'email_verified_at', 'created_at', 'updated_at']);
         }
         return response()->json([
@@ -65,7 +65,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->makeHidden(['roles', 'email_verified_at', 'created_at', 'updated_at']);
         if(auth()->user()->hasRole('admin')){
-            $role = $user->getRoleNames();
+            $role = $user->getRoleNames()->first();
             return response()->json([
                 'user' => $user,
                 'role' => $role
