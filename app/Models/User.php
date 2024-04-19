@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -51,4 +52,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function ordersCreated():HasMany{
+        return $this->hasMany(Order::class, 'idAdminReceptionist');
+    }
+
+    public function assignedClients():HasMany{
+        return $this->hasMany(Order::class, 'idCustomer');
+    }
+
+    public function assignedTailors():HasMany{
+        return $this->hasMany(Order::class, 'idTailor');
+    }
+
 }

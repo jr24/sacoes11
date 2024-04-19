@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRegistrationRequest;
+use App\Http\Requests\UserEditRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,7 @@ class UserController extends Controller
         }
         foreach ($users as $user){
             $user->role = $user->getRoleNames();
+            $user->makeHidden(['roles', 'email_verified_at', 'created_at', 'updated_at']);
         }
         return response()->json([
             'users' => $users,
@@ -42,10 +44,9 @@ class UserController extends Controller
             }elseif(auth()->user()->hasRole('recepcionista')){
                 $user->assignRole('cliente');
             }         
-            $token = $user->createToken('API TOKEN')->plainTextToken;
+            
             return response()->json([
                 'status' => true,
-                'token' => $token,
                 'message' => 'User created successfully'
             ], 200);
         }catch(\Throwable $th){
@@ -62,6 +63,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = User::findOrFail($id);
+        $user->makeHidden(['roles', 'email_verified_at', 'created_at', 'updated_at']);
         if(auth()->user()->hasRole('admin')){
             $role = $user->getRoleNames();
             return response()->json([
@@ -81,7 +83,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $rules = (new UserRegistrationRequest)->rules($id);
+        $rules = (new UserEditRequest)->rules($id);
         $validatedData = $request->validate($rules);
         $user = User::where('id', $id)->firstOrFail();
         $user->update($validatedData);

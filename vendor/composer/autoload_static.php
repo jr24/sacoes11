@@ -90,6 +90,8 @@ class ComposerStaticInita9bbd3976012d5a30a5f6721e86c380d
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Clock\\' => 24,
             'Spatie\\Permission\\' => 18,
+            'Spatie\\ModelStates\\' => 19,
+            'Spatie\\LaravelPackageTools\\' => 27,
             'Spatie\\LaravelIgnition\\' => 23,
             'Spatie\\Ignition\\' => 16,
             'Spatie\\FlareClient\\' => 19,
@@ -152,6 +154,7 @@ class ComposerStaticInita9bbd3976012d5a30a5f6721e86c380d
         array (
             'Fruitcake\\Cors\\' => 15,
             'Faker\\' => 6,
+            'Facade\\IgnitionContracts\\' => 25,
         ),
         'E' => 
         array (
@@ -328,6 +331,14 @@ class ComposerStaticInita9bbd3976012d5a30a5f6721e86c380d
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-permission/src',
         ),
+        'Spatie\\ModelStates\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-model-states/src',
+        ),
+        'Spatie\\LaravelPackageTools\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-package-tools/src',
+        ),
         'Spatie\\LaravelIgnition\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
@@ -482,6 +493,10 @@ class ComposerStaticInita9bbd3976012d5a30a5f6721e86c380d
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
+        ),
+        'Facade\\IgnitionContracts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/facade/ignition-contracts/src',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
@@ -669,6 +684,8 @@ class ComposerStaticInita9bbd3976012d5a30a5f6721e86c380d
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\RoleSedder' => __DIR__ . '/../..' . '/database/seeders/RoleSedder.php',
+        'Database\\Seeders\\UserSedder' => __DIR__ . '/../..' . '/database/seeders/UserSedder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',
@@ -880,6 +897,12 @@ class ComposerStaticInita9bbd3976012d5a30a5f6721e86c380d
         'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/QuotedString.php',
         'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/TLD.php',
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/Warning.php',
+        'Facade\\IgnitionContracts\\BaseSolution' => __DIR__ . '/..' . '/facade/ignition-contracts/src/BaseSolution.php',
+        'Facade\\IgnitionContracts\\HasSolutionsForThrowable' => __DIR__ . '/..' . '/facade/ignition-contracts/src/HasSolutionsForThrowable.php',
+        'Facade\\IgnitionContracts\\ProvidesSolution' => __DIR__ . '/..' . '/facade/ignition-contracts/src/ProvidesSolution.php',
+        'Facade\\IgnitionContracts\\RunnableSolution' => __DIR__ . '/..' . '/facade/ignition-contracts/src/RunnableSolution.php',
+        'Facade\\IgnitionContracts\\Solution' => __DIR__ . '/..' . '/facade/ignition-contracts/src/Solution.php',
+        'Facade\\IgnitionContracts\\SolutionProviderRepository' => __DIR__ . '/..' . '/facade/ignition-contracts/src/SolutionProviderRepository.php',
         'Faker\\Calculator\\Ean' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Ean.php',
         'Faker\\Calculator\\Iban' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Iban.php',
         'Faker\\Calculator\\Inn' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/Calculator/Inn.php',
@@ -5538,6 +5561,32 @@ class ComposerStaticInita9bbd3976012d5a30a5f6721e86c380d
         'Spatie\\LaravelIgnition\\Support\\StringComparator' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Support/StringComparator.php',
         'Spatie\\LaravelIgnition\\Views\\BladeSourceMapCompiler' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Views/BladeSourceMapCompiler.php',
         'Spatie\\LaravelIgnition\\Views\\ViewExceptionMapper' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Views/ViewExceptionMapper.php',
+        'Spatie\\LaravelPackageTools\\Commands\\InstallCommand' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Commands/InstallCommand.php',
+        'Spatie\\LaravelPackageTools\\Exceptions\\InvalidPackage' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Exceptions/InvalidPackage.php',
+        'Spatie\\LaravelPackageTools\\Package' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Package.php',
+        'Spatie\\LaravelPackageTools\\PackageServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/PackageServiceProvider.php',
+        'Spatie\\ModelStates\\Attributes\\AllowTransition' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Attributes/AllowTransition.php',
+        'Spatie\\ModelStates\\Attributes\\AttributeLoader' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Attributes/AttributeLoader.php',
+        'Spatie\\ModelStates\\Attributes\\DefaultState' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Attributes/DefaultState.php',
+        'Spatie\\ModelStates\\Attributes\\RegisterState' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Attributes/RegisterState.php',
+        'Spatie\\ModelStates\\DefaultTransition' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/DefaultTransition.php',
+        'Spatie\\ModelStates\\Events\\StateChanged' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Events/StateChanged.php',
+        'Spatie\\ModelStates\\Exceptions\\ClassDoesNotExtendBaseClass' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Exceptions/ClassDoesNotExtendBaseClass.php',
+        'Spatie\\ModelStates\\Exceptions\\CouldNotPerformTransition' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Exceptions/CouldNotPerformTransition.php',
+        'Spatie\\ModelStates\\Exceptions\\CouldNotResolveTransitionField' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Exceptions/CouldNotResolveTransitionField.php',
+        'Spatie\\ModelStates\\Exceptions\\FieldDoesNotExtendState' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Exceptions/FieldDoesNotExtendState.php',
+        'Spatie\\ModelStates\\Exceptions\\InvalidConfig' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Exceptions/InvalidConfig.php',
+        'Spatie\\ModelStates\\Exceptions\\MissingTraitOnModel' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Exceptions/MissingTraitOnModel.php',
+        'Spatie\\ModelStates\\Exceptions\\TransitionNotAllowed' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Exceptions/TransitionNotAllowed.php',
+        'Spatie\\ModelStates\\Exceptions\\TransitionNotFound' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Exceptions/TransitionNotFound.php',
+        'Spatie\\ModelStates\\Exceptions\\UnknownState' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Exceptions/UnknownState.php',
+        'Spatie\\ModelStates\\HasStates' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/HasStates.php',
+        'Spatie\\ModelStates\\ModelStatesServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/ModelStatesServiceProvider.php',
+        'Spatie\\ModelStates\\State' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/State.php',
+        'Spatie\\ModelStates\\StateCaster' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/StateCaster.php',
+        'Spatie\\ModelStates\\StateConfig' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/StateConfig.php',
+        'Spatie\\ModelStates\\Transition' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Transition.php',
+        'Spatie\\ModelStates\\Validation\\ValidStateRule' => __DIR__ . '/..' . '/spatie/laravel-model-states/src/Validation/ValidStateRule.php',
         'Spatie\\Permission\\Commands\\CacheReset' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CacheReset.php',
         'Spatie\\Permission\\Commands\\CreatePermission' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreatePermission.php',
         'Spatie\\Permission\\Commands\\CreateRole' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Commands/CreateRole.php',

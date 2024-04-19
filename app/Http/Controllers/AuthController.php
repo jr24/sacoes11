@@ -34,13 +34,11 @@ class AuthController extends Controller
             $permissions = $user->getPermissionsViaRoles()->pluck('name');
             $token = $user->createToken('API TOKEN')->plainTextToken;
             return response()->json([
-                'accept' => 'application/json',
-                'content-type' => 'application/json',
+                'status' => true,
                 'user' => [
                     'name' => $user->name,
                     'lastname' => $user->lastname
                 ],
-                'status' => true,
                 'roles' => $roles,
                 'permissions' => $permissions,
                 'message' => 'Login success',
@@ -49,8 +47,6 @@ class AuthController extends Controller
         }
         catch(\Throwable $th){
             return response()->json([
-                'accept' => 'application/json',
-                'content-type' => 'application/json',
                 'status' => false,
                 'message' => $th->getMessage()
             ], 500);
