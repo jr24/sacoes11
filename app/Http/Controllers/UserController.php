@@ -104,7 +104,8 @@ class UserController extends Controller
     public function enable(string $id){
         if(auth()->user()->hasRole('admin')){
             $user = User::findOrFail($id);
-            $user->active = true;
+            //$user->active = true;
+            $user->update(['active' => true]);
             return response()->json([
                 'status' => 'true',
                 'massage' => 'User enable'
@@ -119,7 +120,8 @@ class UserController extends Controller
     public function disable(string $id){
         if(auth()->user()->hasRole('admin')){
             $user = User::findOrFail($id);
-            $user->active = false;
+            //$user->active = false;
+            $user->update(['active' => false]);
             return response()->json([
                 'status' => 'true',
                 'massage' => 'User disable'
