@@ -17,14 +17,14 @@ return new class extends Migration
             $table->dateTime('endDate');
             $table->string('description');
             $table->string('priority');
-            $table->unsignedBigInteger('idAdminReceptionist');
-            $table->unsignedBigInteger('idCustomer');
-            $table->unsignedBigInteger('idTailor');
+            $table->unsignedBigInteger('idAdminRecepcionista');
+            $table->unsignedBigInteger('idCliente');
+            $table->unsignedBigInteger('idSastre');
             $table->timestamps();
 
-            $table->foreign('idAdminReceptionist')->references('id')->on('users');
-            $table->foreign('idCustomer')->references('id')->on('users');
-            $table->foreign('idTailor')->references('id')->on('users');
+            $table->foreign('idAdminRecepcionista')->references('id')->on('users');
+            $table->foreign('idCliente')->references('id')->on('users');
+            $table->foreign('idSastre')->references('id')->on('users');
         });
     }
 

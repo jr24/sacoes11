@@ -17,24 +17,24 @@ class Order extends Model
         'endDate',
         'description',
         'priority',
-        'idAdminReceptionist',
-        'idCustomer',
-        'idTailor' 
+        'idAdminRecepcionista',
+        'idCliente',
+        'idSastre' 
     ];
 
     public function details():HasMany{
         return $this->hasMany(Detail::class, 'idOrder');
     }
 
-    public function adminReceptionist():BelongsTo{
-        return $this->belongsTo(User::class, 'idAdminReceptionist');
+    public function adminRecepcionista():BelongsTo{
+        return $this->belongsTo(User::class, 'idAdminRecepcionista');
     }
 
-    public function tailor():BelongsTo{
-        return $this->belongsTo(User::class, 'idTailor');
+    public function sastre():BelongsTo{
+        return $this->belongsTo(User::class, 'idSastre');
     }
 
-    public function customer():BelongsTo{
-        return $this->belongsTo(User::class, 'idCustomer');
+    public function cliente():BelongsTo{
+        return $this->belongsTo(User::class, 'idCliente');
     }
 }

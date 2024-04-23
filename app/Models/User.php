@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -63,6 +64,10 @@ class User extends Authenticatable
 
     public function assignedTailors():HasMany{
         return $this->hasMany(Order::class, 'idTailor');
+    }
+
+    public function details():BelongsToMany{
+        return $this->belongsToMany(Detail::class, 'detail_state_user', 'idUser', 'idDetail')->withPivot('state', 'date', 'observation')->withTimestamps();
     }
 
 }

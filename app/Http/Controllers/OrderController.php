@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -12,7 +13,22 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+        if($user->hasRole('admin') || $user->hasRole('recepcionista')){
+            $orders = Order::all();
+        }elseif($user->hasRole('sastre')){
+            $orders = Order::where('idSastre', Auth::user()->id)->get();
+        }
+        foreach ($orders as $order){
+            $order->makeHidden(['created_at', 'updated_at']);
+            $order->details->makeHidden(['created_at', 'updated_at']);
+            $order->adminRecepcionista->makeHidden(['created_at', 'updated_at']);
+            $order->cliente->makeHidden(['created_at', 'updated_at']);
+            $order->sastre->makeHidden(['created_at', 'updated_at']);
+        }
+        return response()->json([
+            'orders' => $orders
+        ], 200);
     }
 
     /**
