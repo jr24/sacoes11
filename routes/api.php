@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/reports', [DetailStateUserController::class, 'store']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/users/listSastres', [UserController::class, 'listSastres']);
+    Route::get('/users/listClientes', [UserController::class, 'listClientes']);
     Route::apiResource('users', UserController::class);
     Route::patch('/users/{user}/enable', [UserController::class, 'enable']);
     Route::patch('/users/{user}/disable', [UserController::class, 'disable']);

@@ -27,6 +27,9 @@ class RoleSedder extends Seeder
         Permission::create(['name' => 'users.edit'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'users.enable'])->syncRoles([$role1]);
         Permission::create(['name' => 'users.disable'])->syncRoles([$role1]);
+        Permission::create(['name' => 'users.listSastres'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'users.listClientes'])->syncRoles([$role1, $role2]);
         Permission::create(['name' => 'orders.index'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name' => 'orders.create'])->syncRoles([$role1, $role2]);
     }
 }

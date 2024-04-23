@@ -104,7 +104,6 @@ class UserController extends Controller
     public function enable(string $id){
         if(auth()->user()->hasRole('admin')){
             $user = User::findOrFail($id);
-            //$user->active = true;
             $user->update(['active' => true]);
             return response()->json([
                 'status' => 'true',
@@ -120,7 +119,6 @@ class UserController extends Controller
     public function disable(string $id){
         if(auth()->user()->hasRole('admin')){
             $user = User::findOrFail($id);
-            //$user->active = false;
             $user->update(['active' => false]);
             return response()->json([
                 'status' => 'true',
@@ -131,5 +129,24 @@ class UserController extends Controller
             'status' => 'false',
             'message' => 'Error disable user'
         ],500);
+    }
+
+    public function listSastres(){
+        $sastres = collect();
+        if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('recepcionista')){
+            $sastres = User::role('sastre')->get()->setVisible(['id', 'name', 'lastname']);
+        }
+        return response()->json([
+            'sastres' => $sastres
+        ], 200);
+    }
+
+    public function listClientes(){
+        if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('recepcionista')){
+            $clientes = User::role('cliente')->get()->setVisible(['id', 'name', 'lastname']);
+        }
+        return response()->json([
+            'clientes' => $clientes
+        ], 200);
     }
 }
