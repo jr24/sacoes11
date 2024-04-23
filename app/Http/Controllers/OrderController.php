@@ -70,7 +70,19 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $order->setVisible(['startDate', 'endDate', 'description', 'priority']);
+        $adminRecepcionista = $order->adminRecepcionista->setVisible(['name', 'lastname']);
+        $cliente = $order->cliente->setVisible(['name', 'lastname']);
+        $sastre = $order->sastre->setVisible(['name', 'lastname']);
+        $details = $order->details->setVisible(['typeGarment', 'quantity', 'costUnit']);
+        return response()->json([
+            'order' => $order,
+            'adminRecepcionista' => $adminRecepcionista,
+            'cliente' => $cliente,
+            'sastre' => $sastre,
+            'details' => $details            
+        ], 200);
     }
 
     /**
