@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderEditRequest;
 use App\Http\Requests\OrderRegistrationRequest;
 use Illuminate\Http\Request;
 use App\Models\Order;
@@ -88,9 +89,29 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(OrderEditRequest $request, string $id)
     {
-        //
+        if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('recepcionista')){
+            $request->validated();
+            $data = $request->all();
+            $adminRecepcionista = Auth::user()->id;
+            $cliente = User::findOrFail($request->idCliente);
+            $sastre = User::findOrFail($request->idSastre);
+            if(!$sastre->hasRole('sastre') || !$cliente->hasRole('cliente')){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Sastre or Cliente not corresponding',
+                ]);
+            }
+            $data['idAdminRecepcionista'] = $adminRecepcionista;
+            $data['idCliente'] = $cliente->id;
+            $data['idSastre'] = $sastre->id;
+            $order = Order::findOrFail($id)->update($data);
+            return response()->json([
+                'status' => true,
+                'message' => 'Order updated successfully',
+            ], 200);
+        }  
     }
 
     /**
