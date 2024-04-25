@@ -66,8 +66,7 @@ class User extends Authenticatable
         return $this->hasMany(Order::class, 'idTailor');
     }
 
-    public function details():BelongsToMany{
-        return $this->belongsToMany(Detail::class, 'detail_state_user', 'idUser', 'idDetail')->withPivot('state', 'date', 'observation')->withTimestamps();
+    public function statuses():HasMany{
+        return $this->hasMany(Status::class, 'idUser');
     }
-
 }

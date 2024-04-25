@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StateRegistrationRequest extends FormRequest
+class StatusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,9 @@ class StateRegistrationRequest extends FormRequest
     {
         return [
             'state' => 'required|string|in:pending,starting,testing,finished,delivered,cancelled',
-            //'date' => 'required|date',
-            'observation' => 'required|string'
+            'date' => 'required|date',
+            'observation' => 'required|string|max:255',
+            'idDetail' => 'required|integer|exists:details,id',
         ];
     }
 }

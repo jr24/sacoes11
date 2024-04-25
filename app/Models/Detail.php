@@ -15,8 +15,6 @@ class Detail extends Model
 {
     use HasFactory, HasRoles;
 
-    //protected $casts =['state' => DetailState::class];
-
     protected $fillable = [
         'typeGarment',
         'quantity',
@@ -28,16 +26,7 @@ class Detail extends Model
         return $this->belongsTo(Order::class, 'idOrder');
     }
 
-    /*public function state(): BelongsTo
-    {
-        return $this->belongsTo(DetailState::class, 'state');
-    }*/
-
-    public function users():BelongsToMany{
-        return $this->belongsToMany(User::class, 'detail_state_user', 'idDetail', 'idUser')->withPivot('state', 'date', 'observation')->withTimestamps();
-    }
-
-    public function reports():HasMany{
-        return $this->hasMany(Report::class, 'idDetail');
+    public function statuses():HasMany{
+        return $this->hasMany(Status::class, 'idDetail');
     }
 }
