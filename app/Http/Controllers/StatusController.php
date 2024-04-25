@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Detail;
 use App\Http\Requests\StatusRequest;
 use App\Models\Status;
+use App\Http\Requests\StatusEditRequest;
 
 class StatusController extends Controller
 {
@@ -70,12 +71,15 @@ class StatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StatusRequest $request, string $id)
+    public function update(StatusEditRequest $request, string $id)
     {
         if(!Auth::user()->hasRole('cliente')){
             $request->validated();
             $status = Status::findOrFail($id);
-            $status->update($request->all());
+            $status->update([
+                'date' => $request->date,
+                'observation' => $request->observation
+            ]);
         }
         return response()->json([
             'status' => true,
