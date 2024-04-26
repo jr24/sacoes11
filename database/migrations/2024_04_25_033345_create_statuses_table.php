@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('statuses', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('state');
-            $table->datetime('date');
+            $table->datetime('startDate');
+            $table->datetime('endDate');
             $table->string('observation');
             $table->unsignedBigInteger('idDetail');
             $table->unsignedBigInteger('idUser');

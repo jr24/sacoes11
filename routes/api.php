@@ -16,6 +16,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/users/{user}/disable', [UserController::class, 'disable']);
     Route::apiResource('orders', OrderController::class);
     Route::apiResource('details', DetailController::class);
+    Route::get('details/{detail}/statuses/last', [StatusController::class, 'showLastStatus']);
     Route::apiResource('details/{detail}/statuses', StatusController::class);
     Route::get('/auth/logout', [AuthController::class, 'logout']);
 });

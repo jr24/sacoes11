@@ -90,8 +90,13 @@ class StatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function showLastStatus(string $idDetail)
     {
-        //
+        $statuses = Status::where('idDetail', $idDetail)->get();
+        $status = $statuses->last();
+        $status->makeHidden(['created_at', 'updated_at']);
+        return response()->json([
+            'status' => $status
+        ]);
     }
 }
