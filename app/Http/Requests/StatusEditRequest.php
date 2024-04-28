@@ -22,7 +22,7 @@ class StatusEditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => 'required|date',
+            'startDate' => 'required|date',
             'observation' => 'required|string|max:255'
         ];
     }

@@ -19,7 +19,8 @@ class Status extends Model
 
     protected $fillable = [
         'state',
-        'date',
+        'startDate',
+        'endDate',
         'observation',
         'idDetail',
         'idUser'

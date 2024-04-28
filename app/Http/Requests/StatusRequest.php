@@ -23,7 +23,7 @@ class StatusRequest extends FormRequest
     {
         return [
             'state' => 'required|string|in:pending,starting,testing,finished,delivered,cancelled',
-            'date' => 'required|date',
+            'startDate' => 'required|date',
             'observation' => 'required|string|max:255',
             'idDetail' => 'required|integer|exists:details,id',
         ];

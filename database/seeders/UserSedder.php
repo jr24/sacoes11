@@ -26,8 +26,8 @@ class UserSedder extends Seeder
         ])->assignRole('admin');
 
         $admins = User::factory()->count(1)->admin()->create();
-        $recepcionistas = User::factory()->count(20)->recepcionista()->create();
-        $sastres = User::factory()->count(30)->sastre()->create();
-        $clientes = User::factory()->count(70)->cliente()->create();
+        $recepcionistas = User::factory()->count(4)->recepcionista()->create();
+        $sastres = User::factory()->count(10)->sastre()->create();
+        $clientes = User::factory()->count(50)->cliente()->create();
     }
 }

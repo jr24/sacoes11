@@ -46,7 +46,10 @@ class StatusController extends Controller
                     'message' => 'State transition not allowed',
                 ], 422);
             }
-            //$status->state->transitionTo($data['state']);
+            if($status != null && $status->state != "pending"){
+                $status->update(['endDate' => $data['startDate']]);
+            }
+            $data['endDate'] = $data['startDate'];
             Status::create($data);
         }
         return response()->json([
@@ -71,13 +74,18 @@ class StatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StatusEditRequest $request, string $id)
+    public function update(StatusEditRequest $request, string $idDetail, string $id)
     {
         if(!Auth::user()->hasRole('cliente')){
             $request->validated();
+            $detail = Detail::findOrFail($idDetail);
             $status = Status::findOrFail($id);
+            $statusAnterior = $detail->statuses->where('id', '<', $id)->last();
+            if($statusAnterior != null){
+                $statusAnterior->update(['endDate' => $request->startDate]);
+            }
             $status->update([
-                'date' => $request->date,
+                'startDate' => $request->startDate,
                 'observation' => $request->observation
             ]);
         }
